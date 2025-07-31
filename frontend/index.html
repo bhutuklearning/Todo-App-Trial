@@ -1,0 +1,58 @@
+<!-- /frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Todo App</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-tr from-blue-100 via-white to-blue-200 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-center text-blue-600 mb-6">Welcome Back 👋</h2>
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" id="username" placeholder="Enter username" required
+                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required
+                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            </div>
+            <button type="submit"
+                    class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200">
+                Login </button>
+        </form>
+        <p class="mt-4 text-center text-sm text-gray-600"> Don't have an account? <a href="register.html"
+               class="text-blue-500 hover:underline font-medium">Register here</a>
+        </p>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Todo App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input class="border p-2 w-full rounded" type="text" placeholder="Username" id="username" required />
+            <input type="password" placeholder="Password" id="password" required />
+            <button type="submit">Login</button>
+        </form>
+        <p>If you don't have an account, <a href="register.html">Register</a></p>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html> -->

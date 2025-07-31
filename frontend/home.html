@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Todo App</title>
+    <!-- Tailwind – class-based dark mode -->
+    <script>
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = { darkMode: 'class' };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen
+         bg-gray-100 text-gray-900
+         dark:bg-gray-900 dark:text-gray-100
+         transition-colors duration-300">
+    <!-- NAVBAR -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <h1 class="text-xl font-bold text-purple-600 dark:text-purple-300">📝 Basic Todo</h1>
+            <!-- desktop nav -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="home.html" class="hover:text-purple-600 dark:hover:text-purple-400">Home</a>
+                <a href="create.html" class="hover:text-purple-600 dark:hover:text-purple-400">Create</a>
+                <a href="profile.html" class="hover:text-purple-600 dark:hover:text-purple-400">Profile</a>
+                <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md"> Logout
+                </button>
+            </div>
+            <!-- mobile hamburger -->
+            <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <!-- mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+            <a href="home.html" class="block text-purple-700">Home</a>
+            <a href="create.html" class="block text-purple-700">Create</a>
+            <a href="profile.html" class="block text-purple-700">Profile</a>
+            <button onclick="logout()" class="block w-full text-left bg-red-500 text-white px-3 py-2 rounded-md"> Logout
+            </button>
+        </div>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow max-w-5xl mx-auto py-10 px-4">
+        <h2 class="text-2xl font-semibold text-purple-600 dark:text-purple-300 mb-6">✨ My Todos</h2>
+        <!-- TODO CARDS -->
+        <div id="todoList" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- injected by js/home.js -->
+        </div>
+        <!-- ADD BUTTON -->
+        <button onclick="window.location.href='create.html'" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700
+                   text-white w-14 h-14 rounded-full shadow-xl
+                   text-3xl flex items-center justify-center" title="Add Todo">+</button>
+    </main>
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-gray-800 text-center py-4
+                 text-gray-600 dark:text-gray-300 mt-auto shadow-inner"> Professional Footer © 2025 </footer>
+    <!-- INLINE SCRIPTS -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle')
+            .addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+
+        // Logout handler
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+        }
+    </script>
+    <!-- Core TODO Logic -->
+    <script src="js/home.js"></script>
+</body>
+</html>
