@@ -73,13 +73,54 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Fetch and render stats
     try {
         let statsHTML = ''
-
         if (role === 'admin') {
-            const stats = await fetchJSON('/todos/admin/users')
-            statsHTML = cardsLayout([
-                { label: 'Total Users', value: stats.totalUsers, color: 'bg-indigo-50', text: 'text-indigo-600' },
-                { label: 'Total Todos', value: stats.totalTodos, color: 'bg-green-50', text: 'text-green-600' },
-            ])
+            // fetch enhanced stats
+            const stats = await fetchJSON('/todos/admin/users');
+            const { totalUsers, totalTodos, users } = stats;
+
+            // 1) Build your cards
+            const cards = cardsLayout([
+                { label: 'Total Users', value: totalUsers, color: 'bg-indigo-50', text: 'text-indigo-600' },
+                { label: 'Total Todos', value: totalTodos, color: 'bg-green-50', text: 'text-green-600' }
+            ]);
+
+            // 2) Build user table
+            const rows = users.map(u => `
+            <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-700">
+                <td class="px-4 py-2">${u.name}</td>
+                <td class="px-4 py-2 text-center">${u.totalTodos}</td>
+                <td class="px-4 py-2 text-green-600 text-center">${u.completed}</td>
+                <td class="px-4 py-2 text-yellow-600 text-center">${u.pending}</td>
+            </tr>
+            `).join('');
+
+            const table = `
+                <div class="overflow-x-auto mt-8">
+                <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <thead>
+                    <tr class="bg-gray-100 dark:bg-gray-700">
+                        <th class="px-4 py-2 text-left">User</th>
+                        <th class="px-4 py-2 text-center"># Todos</th>
+                        <th class="px-4 py-2 text-center">Done</th>
+                        <th class="px-4 py-2 text-center">Pending</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    ${rows}
+                    </tbody>
+                </table>
+                </div>`;
+
+            // 3) Inject into page
+            content.innerHTML = `
+                    ${headerHTML}
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${cards}
+                    </div>
+
+                    ${table}`;
+
         } else {
             const todos = await fetchJSON('/todos')
             const list = Array.isArray(todos) ? todos : (todos.todos || [])

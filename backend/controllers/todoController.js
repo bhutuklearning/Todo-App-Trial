@@ -60,31 +60,43 @@ export const adminDeleteTodo = async (req, res) => {
     res.json({ message: 'Todo deleted by admin' });
 };
 
-// Get all users and their todos (admin only)
 export const adminGetUsersWithTodos = async (req, res) => {
-    try {
-        // Get all users (excluding their password)
-        const users = await User.find().select('-password');
+  try {
+    // 1. Fetch all users and todos
+    const users = await User.find().lean();
+    const todos = await Todo.find().lean();
 
-        // For each user, get their todos and build a result array
-        const result = [];
-        for (const user of users) {
-            const todos = await Todo.find({ user: user._id });
-            result.push({
-                user: {
-                    _id: user._id,
-                    username: user.username,
-                    email: user.email,
-                    role: user.role
-                },
-                todos
-            });
-        }
+    // 2. Compute totals
+    const totalUsers = users.length;
+    const totalTodos = todos.length;
 
-        // Send the result
-        res.json(result);
-    } catch (err) {
-        console.error('Admin get users with todos error:', err);
-        res.status(500).json({ message: 'Server error' });
-    }
+    // 3. Build per-user stats
+    const usersWithStats = users.map(u => {
+      const userTodos = todos.filter(t => t.user.toString() === u._id.toString());
+      const doneCount    = userTodos.filter(t => t.completed).length;
+      const pendingCount = userTodos.length - doneCount;
+
+      return {
+        id:         u._id,
+        username:   u.username,
+        name:       u.name,
+        totalTodos: userTodos.length,
+        completed:  doneCount,
+        pending:    pendingCount,
+        // optional: include list of titles
+        todos:      userTodos.map(t => ({ title: t.title, completed: t.completed }))
+      };
+    });
+
+    // 4. Return full payload
+    return res.json({
+      totalUsers,
+      totalTodos,
+      users: usersWithStats
+    });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
 };
