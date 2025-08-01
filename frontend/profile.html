@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Todo App</title>
-    <!-- Tailwind Play CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- 1) Tailwind class‐based dark mode config -->
+    <script>
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = { darkMode: 'class' };
+    </script>
+    <!-- 2) Official Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col min-h-screen
              bg-gray-100 text-gray-900
@@ -17,12 +22,17 @@
             <h1 class="text-xl font-bold text-purple-600 dark:text-purple-300"> 📝 Basic Todo </h1>
             <!-- desktop links + toggles -->
             <div class="hidden md:flex items-center space-x-6">
-                <a href="home.html" class="hover:text-purple-600 dark:hover:text-purple-400 transition"> Home </a>
-                <a href="create.html" class="hover:text-purple-600 dark:hover:text-purple-400 transition"> Create </a>
+                <a href="home.html"
+                   class="text-gray-900 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition">
+                    Home </a>
+                <a href="create.html"
+                   class="text-gray-900 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition">
+                    Create </a>
                 <a href="profile.html"
-                   class="font-semibold hover:text-purple-600 dark:hover:text-purple-400 transition"> Profile </a>
-                <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white
-                       px-3 py-1 rounded-md transition"> Logout </button>
+                   class="text-gray-900 dark:text-gray-100 font-semibold hover:text-purple-600 dark:hover:text-purple-400 transition">
+                    Profile </a>
+                <button onclick="logout()"
+                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition"> Logout </button>
             </div>
             <!-- mobile menu button -->
             <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none">
@@ -33,26 +43,28 @@
         </div>
         <!-- MOBILE MENU -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
-            <a href="home.html" class="block text-purple-700">Home</a>
-            <a href="create.html" class="block text-purple-700">Create</a>
-            <a href="profile.html" class="block text-purple-700">Profile</a>
-            <button onclick="logout()" class="block w-full text-left bg-red-500 text-white
-                     px-3 py-2 rounded-md transition"> Logout </button>
+            <a href="home.html" class="block text-gray-900 dark:text-gray-100">Home</a>
+            <a href="create.html" class="block text-gray-900 dark:text-gray-100">Create</a>
+            <a href="profile.html" class="block text-gray-900 dark:text-gray-100">Profile</a>
+            <button onclick="logout()"
+                    class="block w-full text-left bg-red-500 text-white px-3 py-2 rounded-md transition"> Logout
+            </button>
         </div>
     </nav>
     <!-- MAIN PROFILE SECTION -->
     <main class="flex-grow max-w-4xl mx-auto py-12 px-6">
         <h2 class="text-center text-2xl font-semibold
-               text-purple-600 dark:text-purple-300 mb-6"> Your Profile </h2>
+               text-gray-900 dark:text-gray-100 mb-6"> Your Profile </h2>
         <div id="profileContent" class="w-full max-w-md mx-auto
                 bg-white dark:bg-gray-800
+                text-gray-900 dark:text-gray-100
                 p-6 rounded-2xl shadow-lg
                 transform transition
                 hover:-translate-y-1 hover:shadow-2xl
                 space-y-6">
             <!-- initial loading state -->
             <div class="text-center py-12">
-                <p class="text-lg text-gray-500 dark:text-gray-400 animate-pulse"> Loading profile… </p>
+                <p class="text-lg text-gray-600 dark:text-gray-300 animate-pulse"> Loading profile… </p>
             </div>
         </div>
     </main>
@@ -64,11 +76,9 @@
     <!-- INLINE SCRIPTS -->
     <script>
         // Mobile menu toggle
-        document.getElementById('menu-toggle')
-            .addEventListener('click', () => {
-                document.getElementById('mobile-menu')
-                    .classList.toggle('hidden');
-            });
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
 
         // Logout handler
         function logout() {
@@ -76,25 +86,18 @@
             window.location.href = 'index.html';
         }
 
+        // Theme toggles (desktop + mobile)
+        ['themeToggle', 'themeToggleMobile'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                });
+            }
+        });
     </script>
     <!-- Your profile logic -->
-    <script type="module" src="js/profile.js"></script>
     <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/profile.js"></script>
 </body>
 </html>
-<!-- profile.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Profile</title>
-    <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-    <div id="navbar"></div>
-    <div id="profileContent"></div>
-    <script src="js/nav.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/profile.js"></script>
-</body>
-</html> -->

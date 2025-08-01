@@ -125,7 +125,7 @@ function cardsLayout(items) {
                 rounded-lg shadow hover:shadow-md
                 transition-transform transform hover:-translate-y-1">
       <p class="text-sm font-medium mb-2">${i.label}</p>
-      <p class="text-2xl font-bold ${i.text}">${i.value}</p>
+      <p class="text-2xl font-bold text-center ${i.text}">${i.value}</p>
     </div>
   `).join('')
 }
