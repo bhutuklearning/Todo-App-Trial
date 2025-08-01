@@ -27,8 +27,9 @@
 
 
 // js/profile.js
+import API_BASE_URL from './config.js';
 
-const API = 'http://localhost:12000/api'
+const API = `${API_BASE_URL}/api`;
 const token = localStorage.getItem('token')
 const role = localStorage.getItem('role')
 const rawUser = localStorage.getItem('user')

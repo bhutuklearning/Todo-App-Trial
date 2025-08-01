@@ -51,6 +51,8 @@
 
 // js/auth.js
 
+import API_BASE_URL from './config.js';
+
 const loginForm = document.getElementById('loginForm')
 const registerForm = document.getElementById('registerForm')
 
@@ -66,7 +68,7 @@ if (loginForm) {
 
         try {
             // 1) Authenticate
-            const res = await fetch('http://localhost:12000/api/auth/login', {
+            const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
@@ -111,7 +113,7 @@ if (registerForm) {
         const password = registerForm.password.value
 
         try {
-            const res = await fetch('http://localhost:12000/api/auth/register', {
+            const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password })

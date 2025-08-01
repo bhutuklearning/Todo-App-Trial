@@ -1,10 +1,12 @@
 // js/create.js
+import API_BASE_URL from './config.js';
+
 const form = document.getElementById('todoForm');
 const token = localStorage.getItem('token');
 const editId = localStorage.getItem('editTodoId');
 
 if (editId) {
-    fetch(`http://localhost:12000/api/todos/${editId}`, {
+    fetch(`${API_BASE_URL}/api/todos/${editId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
     })
         .then(res => res.json())
@@ -20,8 +22,8 @@ form.addEventListener('submit', async (e) => {
     const description = form.description.value;
 
     const url = editId
-        ? `http://localhost:12000/api/todos/${editId}`
-        : `http://localhost:12000/api/todos`;
+        ? `${API_BASE_URL}/api/todos/${editId}`
+        : `${API_BASE_URL}/api/todos`;
 
     const method = editId ? 'PUT' : 'POST';
 
