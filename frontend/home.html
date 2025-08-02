@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - Todo App</title>
+    <script src="https://kit.fontawesome.com/fd8a74da96.js" crossorigin="anonymous"></script>
     <!-- Tailwind – class-based dark mode -->
     <script>
         window.tailwind = window.tailwind || {}
@@ -50,9 +51,37 @@
                    text-white w-14 h-14 rounded-full shadow-xl
                    text-3xl flex items-center justify-center" title="Add Todo"> + </button>
     </main>
-    <!-- FOOTER -->
+    <!-- FOOTER
     <footer class="bg-white dark:bg-gray-800 text-center py-4
-                 text-gray-600 dark:text-gray-300 mt-auto shadow-inner"> Professional Footer © 2025 </footer>
+                 text-gray-600 dark:text-gray-300 mt-auto shadow-inner"> Professional Footer © 2025 </footer> -->
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 mt-auto shadow-inner py-6">
+        <div
+             class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base">
+            <!-- Left: Brand -->
+            <!-- <div class="text-left w-full sm:w-auto">
+                <p class="font-semibold text-purple-600 dark:text-purple-300 text-center sm:text-left">Basic Todo</p>
+            </div> -->
+            <!-- Center: Copyright -->
+            <div class="text-center w-full sm:w-auto">
+                <p class="font-semibold text-center">Basic Todo © 2025</p>
+            </div>
+            <!-- Right: Social Links -->
+            <div class="text-right w-full sm:w-auto flex flex-col items-center sm:items-end">
+                <p> Say Hi to the creator: <a href="https://www.linkedin.com" target="_blank"
+                       class="text-purple-600 dark:text-purple-300 hover:text-purple-800 mx-2 transition-colors duration-300"
+                       aria-label="LinkedIn Profile">
+                        <i class="fa-brands fa-square-linkedin"></i>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank"
+                       class="text-purple-600 dark:text-purple-300 hover:text-purple-800 mx-2 transition-colors duration-300"
+                       aria-label="Twitter Profile">
+                        <i class="fa-brands fa-square-x-twitter"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
     <!-- INLINE SCRIPTS -->
     <script>
         document.getElementById('menu-toggle')
