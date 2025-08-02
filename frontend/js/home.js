@@ -43,10 +43,15 @@ window.onload = async function () {
            Completed
          </button>`
 
-    const updateBtn = `<button onclick="editTodo('${todo._id}')"
-                             class="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition">
-                         Update
-                       </button>`
+    const updateBtn = todo.completed
+      ? `<button disabled class="px-3 py-1 bg-gray-200 text-gray-500 rounded cursor-not-allowed">
+           Update
+         </button>`
+      : `<button onclick="editTodo('${todo._id}')"
+                 class="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition">
+           Update
+         </button>`
+
     const deleteBtn = `<button onclick="deleteTodo('${todo._id}')"
                              class="px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition">
                          Delete
@@ -60,15 +65,13 @@ window.onload = async function () {
 
     card.innerHTML = `
       <div class="flex justify-between items-start mb-4">
-        <h3 class="text-2xl font-semibold ${todo.completed ? 'line-through text-gray-400' : ''
-      }">
+        <h3 class="text-2xl font-semibold ${todo.completed ? 'line-through text-gray-400' : ''}">
           ${todo.title}
         </h3>
         ${statusBadge}
       </div>
 
-      <p class="text-base text-gray-600 dark:text-gray-400 mb-6 ${todo.completed ? 'line-through' : ''
-      }">
+      <p class="text-base text-gray-600 dark:text-gray-400 mb-6 ${todo.completed ? 'line-through' : ''}">
         ${todo.description}
       </p>
 
@@ -116,8 +119,6 @@ window.markDone = async function (id) {
   })
   window.location.reload()
 }
-
-
 
 
 // // js/home.js
