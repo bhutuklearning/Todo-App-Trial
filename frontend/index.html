@@ -4,6 +4,76 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic-Todo App (Login)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/fd8a74da96.js" crossorigin="anonymous"></script>
+</head>
+<body
+      class="flex flex-col min-h-screen bg-gradient-to-tr from-blue-100 via-white to-blue-200 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- MAIN LOGIN CARD -->
+    <main class="flex-grow flex items-center justify-center px-4">
+        <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-6">Welcome Back 👋</h2>
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label for="username"
+                           class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required
+                           class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+                </div>
+                <div>
+                    <label for="password"
+                           class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required
+                           class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+                </div>
+                <button type="submit"
+                        class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-200">
+                    Login </button>
+            </form>
+            <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400"> Don't have an account? <a
+                   href="register.html" class="text-blue-500 hover:underline font-medium">Register here</a>
+            </p>
+        </div>
+    </main>
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 mt-auto shadow-inner py-6">
+        <div
+             class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base">
+            <!-- Center: Copyright -->
+            <div class="text-center w-full sm:w-auto">
+                <p class="font-semibold text-center">Basic Todo © 2025</p>
+            </div>
+            <!-- Right: Social Links -->
+            <div class="text-right w-full sm:w-auto flex flex-col items-center sm:items-end">
+                <p> Say Hi to the creator: <a href="https://www.linkedin.com/in/amritanshu-goutam-015bab248/"
+                       target="_blank"
+                       class="text-purple-600 dark:text-purple-300 hover:text-purple-800 mx-2 transition-colors duration-300"
+                       aria-label="LinkedIn Profile">
+                        <i class="fa-brands fa-square-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/Amritanshutwt" target="_blank"
+                       class="text-purple-600 dark:text-purple-300 hover:text-purple-800 mx-2 transition-colors duration-300"
+                       aria-label="Twitter Profile">
+                        <i class="fa-brands fa-square-x-twitter"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/config.js"></script>
+</body>
+</html>
+<!-- /frontend/index.html -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic-Todo App(Login)</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -32,7 +102,7 @@
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/config.js"></script>
 </body>
-</html>
+</html> -->
 <!-- 
 <!DOCTYPE html>
 <html lang="en">
