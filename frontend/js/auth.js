@@ -125,7 +125,7 @@ if (registerForm) {
             }
 
             alert('Registration successful! Please log in.')
-            window.location.href = 'index.html'
+            window.location.href = 'login.html'
 
         } catch (err) {
             console.error(err)
